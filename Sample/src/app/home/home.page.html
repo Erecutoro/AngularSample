@@ -5,8 +5,10 @@
         Sample
       </ion-title>
     </ion-header>
-    <ion-button *ngIf="log == 'log-in'" slot="end" (click)="logIn()" >{{ log }}</ion-button>
-    <ion-button *ngIf="log == 'log-out'" slot="end" (click)="logOut()" >{{ log }}</ion-button>
+    <ion-button *ngIf="log !== 'log-in'" slot="end" (click)="addUser()">+</ion-button>
+    <ion-button *ngIf="log === 'log-in'" slot="end" (click)="logIn()" >{{ log }}</ion-button>
+    <ion-button *ngIf="log === 'log-out'" slot="end" (click)="logOut()" >{{ log }}</ion-button>
+
   </ion-toolbar>
 </ion-header>
 
@@ -20,20 +22,18 @@
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-  
+
   <div *ngFor="let i of obj; let test = index;">
     <ion-card>
-      <ion-card>
         <ion-item>
           <ion-icon name="person" slot="start" color="primary"></ion-icon>
           <ion-label><h1>{{ i.first_name + " " + i.last_name }}</h1></ion-label>
-          <ion-icon *ngIf="log != 'log-in'" name="create" fill="outline" slot="end" (click)="edit(i)"></ion-icon>
-          <ion-icon *ngIf="log != 'log-in'" name="trash" fill="outline" slot="end" (click)="deleteUser(i.id)"></ion-icon>
+          <ion-icon *ngIf="log !== 'log-in'" name="create" fill="outline" slot="end" (click)="edit(i)"></ion-icon>
+          <ion-icon *ngIf="log !== 'log-in'" name="trash" fill="outline" slot="end" (click)="deleteUser(i.id)"></ion-icon>
         </ion-item>
         <ion-card-content>
           Mail: {{ i.email }}
         </ion-card-content>
       </ion-card>
-    </ion-card>
   </div>
 </ion-content>

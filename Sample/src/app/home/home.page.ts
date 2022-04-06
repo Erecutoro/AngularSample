@@ -56,11 +56,18 @@ export class HomePage {
       await alert.deleteUser(id);
   }
 
+  addUser() {
+    let alert = new EditUserComponent(this.alert, this.http);
+
+    if (this.checkLog())
+      alert.editUser(undefined);
+  }
+
   async edit(user : any) {
     let alert = new EditUserComponent(this.alert, this.http);
 
     if (this.checkLog())
-      await alert.editUser(user);
+      alert.editUser(user);
   }
 
   ngOnInit() {

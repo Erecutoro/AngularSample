@@ -7,6 +7,7 @@ import { AlertController } from '@ionic/angular';
   templateUrl: './del-user.component.html',
   styleUrls: ['./del-user.component.scss'],
 })
+
 export class DelUserComponent implements OnInit {
   constructor(
     private alert: AlertController,
@@ -15,7 +16,7 @@ export class DelUserComponent implements OnInit {
 
   async deleteUser(id: number) {
     const alert = await this.alert.create({
-      cssClass: 'my-custom-class',
+      cssClass: 'modal',
       header: 'Warning!',
       message: 'This action is definitive and irreversible. Are you sure?',
       buttons: [ {

@@ -24,3 +24,37 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+.modal .alert-wrapper {
+    .alert-head {
+        background: #c19a6b;
+    }
+    .alert-title.sc-ion-alert-md {
+        color: #000;
+    }
+    .alert-input.sc-ion-alert-md {
+        color: #000;
+    }
+    .alert-message.sc-ion-alert-md {
+        color: #000;
+        margin-top: 20px;
+    }
+    .alert-button-group {
+
+        button {
+            border: 2px solid #a1825b;
+            width: 45%;
+            border-radius: 8px;
+        }
+        span {
+            display: flex;
+            justify-content: center;
+            color: #000;
+        }
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+    background: #ccb7b7;
+    margin-top: 10px;
+}

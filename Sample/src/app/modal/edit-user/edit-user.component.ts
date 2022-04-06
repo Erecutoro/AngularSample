@@ -16,26 +16,26 @@ export class EditUserComponent implements OnInit {
 
   async editUser(user: any) {
     const alert = await this.alert.create({
-      cssClass: 'my-custom-class',
+      cssClass: 'modal',
       header: 'Edit',
       inputs: [
         {
           name: "first_name",
           type: 'text',
           placeholder: 'First name',
-          value: user.first_name,
+          value: user === undefined ? "" : user.first_name,
         }, 
         {
           name: "last_name",
           type: 'text',
           placeholder: 'Last name',
-          value: user.last_name,
+          value: user === undefined ? "" : user.last_name,
         },
         {
           name: "email",
           type: 'email',
           placeholder: 'Email',
-          value: user.email,
+          value: user === undefined ? "" : user.email,
         }
       ],
       buttons: [ {
@@ -44,13 +44,19 @@ export class EditUserComponent implements OnInit {
       {
         text: 'Save',
         handler: newVal => {
-          this.http.get<any>("http://localhost:3000/employees/"+ user.id).subscribe( data => {
-            if (newVal.first_name == data.first_name && newVal.last_name == data.last_name && newVal.email == data.email) {
-              console.log("No changes made.");
+          if (user.id !== undefined) {
+
+            this.http.get<any>("http://localhost:3000/employees/"+ user.id).subscribe( data => {
+              if (newVal.first_name == data.first_name && newVal.last_name == data.last_name && newVal.email == data.email) {
+                console.log("No changes made.");
             } else 
-              this.http.put<any>("http://localhost:3000/employees/" + user.id, newVal).subscribe( data => {
-                console.log(data);
-              });
+            this.http.put<any>("http://localhost:3000/employees/" + user.id, newVal).subscribe( data => {
+              console.log(data);
+            });
+          });
+        } else
+            this.http.put<any>("http://localhost:3000/employees/" + user.id, newVal).subscribe( data => {
+              console.log(data);
             });
         }
       }

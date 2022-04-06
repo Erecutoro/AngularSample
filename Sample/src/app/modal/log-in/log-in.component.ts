@@ -17,7 +17,7 @@ export class LogInComponent implements OnInit {
     
   async logIn() {
     const alert = await this.alert.create({
-      cssClass: 'my-custom-class',
+      cssClass: 'modal',
       header: 'Log in',
       inputs: [
         {
@@ -37,7 +37,7 @@ export class LogInComponent implements OnInit {
       {
         text: 'Log in',
         handler: newVal => {
-          if (newVal.username != environment.SuperUser && newVal.password != environment.SuperPassword)
+          if (newVal.username != environment.SuperUser || newVal.password != environment.SuperPassword)
             return;
           this.http.post<any>("http://localhost:3000/users", { username: newVal.username, password: newVal.password }).subscribe( () => {
             localStorage.setItem("loggedIn", "true");
