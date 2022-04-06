@@ -13,10 +13,20 @@
     </ion-toolbar>
   </ion-header>
 
-  <div>
-    <ion-item button (click)="buttonClick()">
-      <ion-label>
-        Button Item
-      </ion-label>
-    </ion-item>  </div>
+  <div *ngFor="let i of obj">
+    <ion-card>
+      <ion-card>
+        <ion-item>
+          <ion-icon name="person" slot="start" color="primary"></ion-icon>
+          <ion-label><h1>{{ i.first_name + " " + i.last_name }}</h1></ion-label>
+          <ion-button fill="outline" slot="end">View</ion-button>
+        </ion-item>
+      
+        <ion-card-content>
+          This is content, without any paragraph or header tags,
+          within an ion-card-content element.
+        </ion-card-content>
+      </ion-card>
+    </ion-card>
+  </div>
 </ion-content>

@@ -8,10 +8,10 @@
   <ion-card>
     <form [formGroup]="registerForm" (ngSubmit)="register()" novalidate>
       <ion-item>
-        <ion-input placeholder="Enter first name" formControlName="firstName" required=true></ion-input>
+        <ion-input placeholder="Enter first name" formControlName="first_name" required=true></ion-input>
       </ion-item>
       <ion-item>
-        <ion-input placeholder="Enter last name" formControlName="lastName" required=true></ion-input>
+        <ion-input placeholder="Enter last name" formControlName="last_name" required=true></ion-input>
       </ion-item>
       <ion-item>
         <ion-input placeholder="Enter email" formControlName="email" type="email" required=true></ion-input>

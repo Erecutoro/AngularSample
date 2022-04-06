@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 
 @Component({
@@ -6,7 +7,14 @@ import { Component } from '@angular/core';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  constructor(private http: HttpClient) {}
+  obj = [];
 
-  constructor() {}
+  ngOnInit() {
+    this.http.get<any>("http://localhost:3000/employees").subscribe(data => {
+      this.obj = data;
+      console.log(this.obj);
+    });
+  }
 
 }
