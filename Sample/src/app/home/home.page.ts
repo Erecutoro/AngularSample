@@ -1,6 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { DelUserComponent } from '../modal/del-user/del-user.component';
+import { AlertController } from '@ionic/angular';
+import { EditUserComponent } from '../modal/edit-user/edit-user.component';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +12,8 @@ import { Router } from '@angular/router';
 })
 
 export class HomePage {
-  constructor(private http: HttpClient, private route : Router) {}
+  constructor(private http: HttpClient, private route : Router, private alert : AlertController) {}
+
   obj = [];
   log = "log-in";
   user = "user";
@@ -30,8 +34,14 @@ export class HomePage {
     localStorage.getItem("loggedIn") == "true" ? this.log = "log-out" : this.log = "log-in";
   }
 
-  edit(i : any) {
-    this.route.navigate(['/register', {first_name: i.first_name, last_name: i.last_name, email: i.email, id: i.id}]);
+  async deleteUser(id : number) {
+    let alert = new DelUserComponent(this.alert, this.http);
+    await alert.deleteUser(id);
+  }
+
+  async edit(i : any) {
+    let alert = new EditUserComponent(this.alert, this.http);
+    await alert.editUser(i);
   }
 
   ngOnInit() {
