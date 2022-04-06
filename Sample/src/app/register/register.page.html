@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>register</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <form [formGroup]="registerForm" (ngSubmit)="register()" novalidate>
+      <ion-item>
+        <ion-input placeholder="Enter first name" formControlName="firstName" required=true></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input placeholder="Enter last name" formControlName="lastName" required=true></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input placeholder="Enter email" formControlName="email" type="email" required=true></ion-input>
+      </ion-item><br>
+      <ion-button type="submit" expand="block">Register</ion-button>
+    </form>
+  </ion-card>
+</ion-content>
