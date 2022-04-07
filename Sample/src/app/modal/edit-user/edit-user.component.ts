@@ -17,7 +17,7 @@ export class EditUserComponent implements OnInit {
   async editUser(user: any) {
     const alert = await this.alert.create({
       cssClass: 'modal',
-      header: 'Edit',
+      header: user === undefined ? 'Add employee' : 'Edit employee',
       inputs: [
         {
           name: "first_name",
@@ -44,8 +44,7 @@ export class EditUserComponent implements OnInit {
       {
         text: 'Save',
         handler: newVal => {
-          if (user.id !== undefined) {
-
+          if (user !== undefined) {
             this.http.get<any>("http://localhost:3000/employees/"+ user.id).subscribe( data => {
               if (newVal.first_name == data.first_name && newVal.last_name == data.last_name && newVal.email == data.email) {
                 console.log("No changes made.");
@@ -55,7 +54,7 @@ export class EditUserComponent implements OnInit {
             });
           });
         } else
-            this.http.put<any>("http://localhost:3000/employees/" + user.id, newVal).subscribe( data => {
+            this.http.post<any>("http://localhost:3000/employees/", newVal).subscribe( data => {
               console.log(data);
             });
         }
